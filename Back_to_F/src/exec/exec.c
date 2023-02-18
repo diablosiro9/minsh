@@ -13,8 +13,11 @@ int ft_exec(t_list *str)
     int last_pipefd[2];
 
     path = split_cmd_file(); // ici je recup bien le bon path
-    //printf("path == %s\n", path);
-	// ft_unset();
+    printf("path == %s\n", path);
+    // faire attention, si je vire le path de l env pdt l'exec, prochaine exec cest ici que le path vaut null et return rien mais a ameliorer
+	// if (path == NULL)
+    //     return (0);
+    // ft_unset();
 	ft_env(NULL);
 	ft_pwd();
     if (str != NULL) {
@@ -24,7 +27,7 @@ int ft_exec(t_list *str)
 			ft_exit(ft_atoi(sub_command));
 		}
 		if (strcmp(command, "unset") == 0)
-			ft_unset("PATH");
+			ft_unset(str->next->content);
         // //printf("Commande : %s\n", command);
         // if (strcmp(command, "exit") == 0) {
         //     printf("Bye\n");

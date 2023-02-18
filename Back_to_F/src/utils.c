@@ -9,7 +9,7 @@ void afflist(t_list *list, char *name)
 		// | Affichage %s  |\n\
 		// ---------------------\n\
 		// 	%s\n", name, list->content);
-        printf("\e[1;33mToken : [%s]\n\e[0m", list->content);
+        printf("\e[1;33mToken : [%s]\n\e[0m", (char *)list->content);
         list = list->next;
     }
 }

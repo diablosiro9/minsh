@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:34:36 by dojannin          #+#    #+#             */
-/*   Updated: 2023/02/16 15:13:43 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:07:31 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,39 @@ void	ft_env(char	*s)
 	}
 }
 
+
+t_env *delete_node(t_env* head, int position) {
+    if (head == NULL) {
+        // la liste est vide
+        return head;
+    }
+    // supprime le premier élément
+    if (position == 0) {
+       	t_env* new_head = head->next;
+        free(head);
+        return new_head;
+    }
+    // supprime un élément dans la liste
+    t_env* current = head;
+    for (int i = 0; current != NULL && i < position - 1; i++) {
+        current = current->next;
+    }
+    if (current == NULL || current->next == NULL) {
+        // la position est en dehors de la liste
+        return head;
+    }
+    t_env* next_node = current->next->next;
+    free(current->next);
+    current->next = next_node;
+    return head;
+}
+
 void	ft_unset(char *name)
 {
 	char	*path = NULL;
-	char	*tmp = g_data.env;
+	t_env	*tmp = g_data.env;
+	t_env	*head = tmp;
+	int		i = 0;
 
 	printf("name == %s\n", name);
 	path = search_env_content(g_data.env, name);
@@ -200,9 +229,20 @@ void	ft_unset(char *name)
 	printf("path de unset == %s\n", path);
 	if (path != NULL)
 	{
-		while (g_data.env != name)
-		printf("NAME to unset == %s\n", name);
+		while (strcmp(tmp->name, name) != 0)
+		{
+			printf("g-data.env->name   %s\n", tmp->name);
+			printf("NAME to unset == %s\n", name);
+			tmp = tmp->next;
+			i++;
+		}
+		if (strcmp(tmp->name, name) == 0)
+		{
+			printf("la chacal\n");
+			delete_node(tmp, i);
+		}
 	}
+	tmp = head;
 }
 
 /* Obtenir l'env grace a la struct global et le print dans un tmp. Parcourir jusquau bout. 
@@ -216,9 +256,9 @@ void	ft_unset(char *name)
 	Execv tout ca dans un fork, close les fd et redir, waitpid, return;
 */
 
-void	check_exec()
-{
-	t_token	*tmp = NULL;
+// void	check_exec()
+// {
+// 	t_token	*tmp = NULL;
 	
-	tmp = g_data.token;
-}
+// 	tmp = g_data.token;
+// }

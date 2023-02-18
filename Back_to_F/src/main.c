@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:32:59 by mla-rosa          #+#    #+#             */
-/*   Updated: 2023/02/16 14:54:32 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:41:38 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -435,6 +435,8 @@ void	*split_cmd_file()
 				{
 					//printf("tmp->value == %s\n", tmp->value);
 					path = search_env_content(g_data.env, "$PATH");
+					if (path == NULL)
+						return (NULL);
 					printf("sorti\n");
 					tab_path = ft_oldsplit(path, ':');
 					path = tmp->value;

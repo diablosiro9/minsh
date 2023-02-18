@@ -56,7 +56,7 @@ void	init_type(int type, char *value)
 t_token *tokenizateur(t_list *list)
 {
 	// t_token	*token = NULL;
-	while(list != NULL && list->content != '\0')
+	while(list != NULL && list->content != (void *)0)
 	{
 		if (ft_strchr(list->content, '|'))
 		{
@@ -96,7 +96,7 @@ t_token *tokenizateur(t_list *list)
         else
         {
             printf("WORD\n");
-			printf("CONTENT == %s\n", list->content);
+			printf("CONTENT == %s\n", (char *)list->content);
 			// if (ft_strncmp(list->content, "(null)", ft_strlen(list->content)) != 0)
         	init_type(WORD, list->content);
         }
