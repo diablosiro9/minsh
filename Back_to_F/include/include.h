@@ -6,7 +6,7 @@
 /*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:33:27 by mla-rosa          #+#    #+#             */
-/*   Updated: 2023/02/14 12:19:50 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:15:11 by dojannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,28 @@ typedef struct t_data {
 t_data		g_data;
 
 
+//------------------------------------parsor.c------------------------------------
+int 	checking_closed(char *tp);
+void	*parsor(t_list *str);
 
+//------------------------------------help_parsor.c------------------------------------
+void	*solo_command();
+void	*manage_double();
+void	*find_all_dollars();
 
+//------------------------------------lexer_token.c------------------------------------
+void afftoken(t_token *list, char *name);
+void	delete_token(t_token **l);
+int		token_size();
 
 //------------------------------------exec.c------------------------------------
-
 int   ft_exec(t_list *str);
+
+//------------------------------------utils_split.c------------------------------------
+char	**ft_oldsplit(char const *s, char c);
+char	*ft_strjoin_bis(char const *s1, char const *s2);
+
+
 //------------------------------------utils.c------------------------------------
 t_list	*ft_lstnew(void *content);
 t_list *ft_lstadd(t_list **alst, t_list *new);
@@ -94,6 +110,8 @@ void	*split_cmd_file();
 t_env *get_env(char **env);
 t_list *lexer(t_list *str);
 int main(int ac, char **av, char **env);
+void	free_tab(char **cmd);
+
 //-------------------------------------- cd.c --------------------------------------
 void	ft_env(char	*s);
 void	ft_unset();

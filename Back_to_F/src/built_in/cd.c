@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:34:36 by dojannin          #+#    #+#             */
-/*   Updated: 2023/02/17 12:07:31 by imac21           ###   ########.fr       */
+/*   Updated: 2023/02/18 15:33:16 by dojannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,25 +222,22 @@ void	ft_unset(char *name)
 	t_env	*head = tmp;
 	int		i = 0;
 
+	if (!name)
+		return ;
+	printf("la \n");
 	printf("name == %s\n", name);
 	path = search_env_content(g_data.env, name);
 	if (path == NULL)
 		return ;
-	printf("path de unset == %s\n", path);
 	if (path != NULL)
 	{
-		while (strcmp(tmp->name, name) != 0)
+		while (strcmp(tmp->name, name) != 0 && tmp)
 		{
-			printf("g-data.env->name   %s\n", tmp->name);
-			printf("NAME to unset == %s\n", name);
 			tmp = tmp->next;
 			i++;
 		}
 		if (strcmp(tmp->name, name) == 0)
-		{
-			printf("la chacal\n");
-			delete_node(tmp, i);
-		}
+			delete_node(g_data.env, i);
 	}
 	tmp = head;
 }

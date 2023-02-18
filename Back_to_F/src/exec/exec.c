@@ -18,17 +18,30 @@ int ft_exec(t_list *str)
 	// if (path == NULL)
     //     return (0);
     // ft_unset();
-	ft_env(NULL);
-	ft_pwd();
+	// ft_env(NULL);
+	// ft_pwd();
     if (str != NULL) {
         command = str->content;
 		if (strcmp(command, "exit") == 0)
 		{
 			ft_exit(ft_atoi(sub_command));
 		}
+		if (strcmp(command, "env") == 0)
+		{
+			if (str->next)
+				ft_env(str->next->content);
+			else
+				ft_env(NULL);
+		}
 		if (strcmp(command, "unset") == 0)
-			ft_unset(str->next->content);
-        // //printf("Commande : %s\n", command);
+		{
+			printf("entrreeee\n");
+			if (str->next)
+				ft_unset(str->next->content);
+			else
+				ft_unset();
+		}
+	    // //printf("Commande : %s\n", command);
         // if (strcmp(command, "exit") == 0) {
         //     printf("Bye\n");
         //     exit(0);

@@ -1,4 +1,16 @@
-#include "../include/include.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/18 17:09:32 by dojannin          #+#    #+#             */
+/*   Updated: 2023/02/18 17:09:57 by dojannin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/include.h"
 
 void afflist(t_list *list, char *name)
 {
@@ -103,10 +115,7 @@ int	checking_str(char *ref, char *find)
 		if (find[j] == '$')
 			j++;
 		if (ref[i] != find[j])
-		{
-			printf("ref[i] = %c && find[j] == %c\n", ref[i], find[j]);
 			return (0);
-		}
 		i++;
 		j++;
 	}

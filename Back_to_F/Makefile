@@ -9,8 +9,12 @@ LIBFT		=	lib/libft/libft.a
 GNL			=	lib/gnl/get_next_line.c
 
 SRCS		=	./src/main.c\
-				./src/utils.c\
+				./src/utils/utils.c\
+				./src/utils/utils_split.c\
 				./src/lexer/tokenisateur.c\
+				./src/lexer/help_parsor.c\
+				./src/lexer/lexer_token.c\
+				./src/lexer/parsor.c\
 				./src/exec/exec.c\
 				./src/built_in/cd.c\
 
